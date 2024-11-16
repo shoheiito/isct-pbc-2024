@@ -3,9 +3,9 @@ import { NextResponse } from 'next/server'
 import prisma from '../../../../../../lib/prisma'
 
 // POST /api/pets/:id/weights
-export async function POST(request: Request, { params }: { params: { id: string } }) {
+export async function POST(request: Request) {
   // get id from params
-  const id = params.id
+  // const id = params.id
   // get data from request body
   const data = await request.json()
   // create weight record

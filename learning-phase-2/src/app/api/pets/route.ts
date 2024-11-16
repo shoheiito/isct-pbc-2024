@@ -4,12 +4,10 @@ import prisma from '../../../../lib/prisma'
 
 // GET /api/pets
 export async function GET() {
-  // findMany returns a list of records.
   const pets = await prisma.pet.findMany({
-    orderBy: { id: 'desc' },
-    include: { owner: true }
+    orderBy: { id: 'asc' },
+    select: { id: true, name: true, imageUrl: true, owner: { select: { name: true } } }
   })
-  // return Response with pets to json
   return NextResponse.json({ pets })
 }
 
@@ -40,6 +38,7 @@ export async function PUT(request: Request) {
   // return Response with pet to json
   return NextResponse.json({ pets })
 }
+
 // DELETE /api/pets
 export async function DELETE() {
   // delete all pets
